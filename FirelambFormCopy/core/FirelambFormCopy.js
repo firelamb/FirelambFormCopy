@@ -1,8 +1,8 @@
 ﻿/**
-jQuery Form Copy
-@Version 1.0.1
-@UpdateDate: 2014-07-17
-@Url ：https://github.com/firelamb/FirelambFormCopy
+FirelambFormCopy
+@Version 1.0.2
+@UpdateDate: 2014-07-25
+@Url 
 @Author: Firelamb
 @Email:firelamb@qq.com
 **/
@@ -32,8 +32,8 @@ jQuery Form Copy
 
                 if ($formParent.children().length > 1)//the form parent maybe has more than 2 children(the form and the other at least)
                 {
-                    var $child = $formParent.children().slice(i);
-                    $($child).before($($form));
+                    var $child = $formParent.children().eq(i - 1)
+                    $($child).after($($form));
                 }
                 else//the form is the only child
                 {
@@ -48,6 +48,7 @@ jQuery Form Copy
         copy: function (options) {
 
             var opts = $.extend({}, defaults, options || {});
+
 
             $(this).on(opts.triggerEventType, function () {
 
@@ -81,8 +82,10 @@ jQuery Form Copy
                         $($formTo).before($($form));
                         break;
                 }
+                opts.callBack();
             });
-            opts.callBack();
+
+
             return this;
         }
     };
